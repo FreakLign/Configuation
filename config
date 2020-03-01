@@ -1,0 +1,55 @@
+general {
+    output_format = "i3bar"
+    interval = 5
+    colors = true
+    color_good = "#05F910"
+    color_degraded = "#101010"
+    color_bad = "#FFFF00"
+}
+
+order += "cpu_usage 0"
+order += "battery 0"
+order += "tztime local"
+order += "ipv6"
+order += "wireless wlp3s0"
+order += "ethernet eth0"
+order += "disk /"
+
+wireless wlp7s0 {
+    format_up = " %essid "
+    format_down = " down "
+}
+
+ethernet enp8s0 {
+    format_up = "up "
+    format_down = "down "
+}
+
+battery 0 {
+    format = "%status %percentage"
+    path = "/sys/class/power_supply/BAT0/uevent"
+    low_threshold = 20
+    threshold_type = percentage
+    status_chr = "CH "
+    status_bat = " BAT "
+    status_full = " FULL "
+    last_full_capacity = false
+    integer_battery_capacity = true
+}
+
+tztime local {
+    format = "%Y-%m-%d  %H:%M:%S "
+}
+
+cpu_usage {
+    format = "  CPU: %usage"
+}
+
+disk "/" {
+        format = "%free"
+}
+
+wireless wlp3s0 {
+        format_up = "%essid %quality (%bitrate) %ip"
+        format_down = "down"
+}
